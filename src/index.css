@@ -13,10 +13,20 @@
 @layer base {
   :root {
     --light-linear-gradient: linear-gradient(158deg, rgba(85, 221, 255, 1) 35%, rgba(192, 88, 243, 1) 100%);
-    --dark-linear-gradient: linear-gradient(158deg, rgba(55, 16, 189, 1) 30%, rgba(164, 35, 149, 1) 100%);
+    --dark-linear-gradient: linear-gradient(158deg, rgba(55, 16, 189, 1) 35%, rgba(164, 35, 149, 1) 100%);
     --light-box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.50);
 
+    --color-blue: #3A7CFD;
     --color-white: #FFFFFF;
+    --color-light-grey: #E3E4F1;
+    --color-pale-grey: #C8CBE7;
+    --color-grey: #5B5E7E;
+    --color-mid-grey: #494C6B;
+    --color-dark-grey: #393A4B;
+    --color-space-grey: #4D5067;
+    --color-light-space-grey: #767992;
+    --color-space-black: #25273D;
+    --color-midnight-black: #171823;
 
   }
 
