@@ -1,9 +1,16 @@
+import { useState } from "react";
+import Header from "./assets/components/Header";
+import Todo from "./assets/components/Todo";
+
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-blue-500">
-        Hello world!
-      </h1>
+      <main className="h-full flex justify-center">
+        <div className="max-container">
+          <Header />
+          <Todo />
+        </div>
+      </main>
     </>
   )
 }
