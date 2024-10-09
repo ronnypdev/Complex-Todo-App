@@ -5,9 +5,9 @@ import Todo from "./assets/components/Todo";
 function App() {
   return (
     <>
-      <main className="h-full flex justify-center">
-        <div className="max-container">
+      <main className="h-full flex-col justify-center">
           <Header />
+        <div className="max-container">
           <Todo />
         </div>
       </main>
