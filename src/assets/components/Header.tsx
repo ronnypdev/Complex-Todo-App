@@ -1,4 +1,4 @@
-import iconMoon from "./icons/iconMoon"
+import { ReactComponent as MoonIcon } from "./icons/MoonIcon"
 
 export default function Header() {
   return (
@@ -7,7 +7,7 @@ export default function Header() {
         <div className="max-container h-full">
           <div>
             <h1>Header Component</h1>
-            <iconMoon />
+
           </div>
         </div>
       </header>
