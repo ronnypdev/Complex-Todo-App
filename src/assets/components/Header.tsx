@@ -1,4 +1,4 @@
-import { ReactComponent as MoonIcon } from "./icons/MoonIcon"
+import MoonIcon from "./icons/MoonIcon"
 
 export default function Header() {
   return (
@@ -7,7 +7,11 @@ export default function Header() {
         <div className="max-container h-full">
           <div>
             <h1>Header Component</h1>
-
+            <MoonIcon
+              fillColor="#FFFFFF"
+              stroke="#FFFFFF"
+              hoverState="hover:fill-white cursor-pointer"
+            />
           </div>
         </div>
       </header>
