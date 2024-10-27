@@ -41,6 +41,9 @@
   }
 }
 
+.oval-icon {
+  @apply w-6 h-6 rounded-full border border-lightGrey absolute left-3 -top-[6px]
+}
 
 @layer components {
   .max-container {
