@@ -27,6 +27,7 @@ export default {
         darkGrey: "var(--color-dark-grey)",
         spaceGrey: "var(--color-space-grey)",
         lightSpaceGrey: "var(--color-light-space-grey)",
+        shadeGrey: "var(--color-shade-grey)",
         spaceBlack: "var(--color-space-black)",
         midnightBlack: "var(--color-midnight-black)"
       },
