@@ -7,7 +7,7 @@ function App() {
     <>
       <main className="h-full flex-col justify-center">
           <Header />
-        <div className="max-container">
+        <div className="max-container relative bottom-12">
           <Todo />
         </div>
       </main>
