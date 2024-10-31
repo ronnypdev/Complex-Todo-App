@@ -1,10 +1,9 @@
-
 export default function Todo() {
   return (
     <>
       <div className="todo-container bg-white w-[540px] h-[439px] my-0 mx-auto rounded-[5px] shadow-paleWhite">
         <div className="todo-wrapper h-[90%] min-h-fit">
-          <div className="p-6 border-t border-t-lightGrey relative">
+          <div className="p-6 border-t first:border-0">
             <input className="cursor-pointer" type="checkbox" id="listItems1" name="listItems1"/>
             <label className="cursor-pointer" htmlFor="listItems1">Jog around the park 3x</label>
           </div>
