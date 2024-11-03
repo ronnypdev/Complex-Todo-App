@@ -4,7 +4,7 @@ import OvalIcon from "./icons/OvalIcon"
 export default function Header() {
   return (
     <>
-      <header className="bg-hero-desktop-light h-[330px] bg-cover bg-center bg-no-repeat">
+      <header className="bg-hero-mobile-light md:bg-hero-desktop-light h-[330px] bg-cover bg-center bg-no-repeat">
         <div className="max-container h-full">
           <div className="flex justify-center items-center h-full">
             <div className="w-[540px] my-0 mx-auto">
