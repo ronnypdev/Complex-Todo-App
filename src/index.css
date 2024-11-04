@@ -45,6 +45,10 @@
   @apply w-6 h-6 rounded-full border border-lightGrey absolute left-3 -top-[6px]
 }
 
+.todo-flex-col {
+  @apply flex justify-center items-center
+}
+
 @layer components {
   .max-container {
     max-width: 1440px;
