@@ -1,7 +1,17 @@
+import { useState } from "react"
+
 import PencilIcon from "./icons/PencilIcon"
 import CrossIcon from "./icons/CrossIcon"
 
 export default function Todo() {
+
+  // const [todoLisItem, setTodoListItem] = useState<string>("");
+
+  // function handleTodoItemChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setTodoListItem(event.target.value)
+  // }
+
+
   return (
     <>
       <div className="todo-container bg-white w-[540px] h-[500px] my-0 mx-auto rounded-[5px] shadow-paleWhite">
