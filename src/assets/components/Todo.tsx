@@ -28,6 +28,14 @@ export default function Todo() {
     ])
   }
 
+  function removeTodoItem() {
+    setAddListItems(prevAddListItems => 
+      prevAddListItems.map(item =>
+        item.id !== addListItems.id
+      )
+    )
+  }
+
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     addTodoItem();
@@ -73,7 +81,10 @@ export default function Todo() {
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
                   <PencilIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
-                  <CrossIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
+                  <CrossIcon
+                    fillColor="#494C6B"
+                    toggleOnClick={removeTodoItem}
+                    hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                 </div>
               </div>
             ))}
