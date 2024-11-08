@@ -1,5 +1,4 @@
-import MoonIcon from "./icons/MoonIcon"
-import OvalIcon from "./icons/OvalIcon"
+import MoonIcon from "./icons/MoonIcon";
 
 export default function Header() {
   return (
@@ -15,10 +14,6 @@ export default function Header() {
                   hoverState="hover:fill-white cursor-pointer"
                 />
               </div>
-              <label htmlFor="listInput" className="relative">
-                <OvalIcon />
-                <input className="w-full max-w-full py-[23px] pr-5 pl-[47px] shadow-paleWhite rounded-[5px] placeholder:text-darkGrey" type="text" name="listInput" id="listInput" placeholder="Create a new todo item..."/>
-              </label>
             </div>
           </div>
         </div>
