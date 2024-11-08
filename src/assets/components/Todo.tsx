@@ -1,22 +1,52 @@
 import { useState } from "react";
+import { nanoid } from 'nanoid';
 
 import PencilIcon from "./icons/PencilIcon";
 import CrossIcon from "./icons/CrossIcon";
 import OvalIcon from "./icons/OvalIcon";
 
-export default function Todo() {
-  // const [todoLisItem, setTodoListItem] = useState<string>("");
+type TodoListItem = {
+  id: string,
+  listItem: string
+}
 
-  // function handleTodoItemChange(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setTodoListItem(event.target.value)
-  // }
+export default function Todo() {
+  const [todoLisItem, setTodoListItem] = useState<string>("");
+  const [addListItems, setAddListItems] = useState<TodoListItem[]>([]);
+
+  function handleTodoItemChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setTodoListItem(event.target.value);
+  }
+
+  function addTodoItem() {
+    setAddListItems([
+      ...addListItems,
+      {
+        id: nanoid(),
+        listItem: todoLisItem
+      }
+    ])
+  }
+
+  function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    addTodoItem();
+  }
 
   return (
     <>
-      <form className="w-[540px] h-[540px] my-0 mx-auto">
+      <form className="w-[540px] h-[540px] my-0 mx-auto" onSubmit={submitTodoData}>
         <label htmlFor="listInput" className="relative mb-8 block">
           <OvalIcon />
-          <input className="w-full max-w-full py-[23px] pr-5 pl-[47px] shadow-paleWhite rounded-[5px] placeholder:text-darkGrey" type="text" name="listInput" id="listInput" placeholder="Create a new todo item..."/>
+          <input
+            className="w-full max-w-full py-[23px] pr-5 pl-[47px] shadow-paleWhite rounded-[5px] placeholder:text-darkGrey"
+            type="text"
+            onChange={handleTodoItemChange}
+            value={todoLisItem}
+            name="listInput"
+            id="listInput"
+            placeholder="Create a new todo item..."
+          />
         </label>
         <div className="w-full h-full max-w-full bg-white rounded-[5px] shadow-paleWhite">
           <div className="h-[85%] overflow-y-auto min-h-[auto]">
@@ -30,17 +60,26 @@ export default function Todo() {
                 <CrossIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
               </div>
             </div>
-            <div className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
-              <div className="todo-flex-col">
-                <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]" type="checkbox" id="listItems2" name="listItems2"/>
-                <label className="cursor-pointer" htmlFor="listItems2">10 minutes meditation</label>
+
+            {addListItems.map(item => (
+              <div key={item.id} className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
+                <div className="todo-flex-col">
+                  <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
+                    type="checkbox"
+                    id={`listItem-${item.id}`}
+                    name={`listItem-${item.id}`}
+                  />
+                  <label className="cursor-pointer" htmlFor={`listItem-${item.id}`}>{item.listItem}</label>
+                </div>
+                <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
+                  <PencilIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
+                  <CrossIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
+                </div>
               </div>
-              <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
-                <PencilIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
-                <CrossIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
-              </div>
-            </div>
+            ))}
           </div>
+
+
           <div className="controls border-t border-t-lightGrey h-[15%] flex justify-between items-center px-[14px]">
             <p className="text-shadeGrey"><span>5</span> items left</p>
             <div className="flex justify-between items-center">
