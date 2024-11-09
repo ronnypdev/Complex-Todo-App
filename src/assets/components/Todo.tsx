@@ -7,7 +7,8 @@ import OvalIcon from "./icons/OvalIcon";
 
 type TodoListItem = {
   id: string,
-  listItem: string
+  listItem: string,
+  completed: boolean,
 }
 
 export default function Todo() {
