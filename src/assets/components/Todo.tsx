@@ -24,7 +24,8 @@ export default function Todo() {
       ...addListItems,
       {
         id: nanoid(),
-        listItem: todoLisItem
+        listItem: todoLisItem,
+        completed: false
       }
     ])
   }
@@ -36,6 +37,16 @@ export default function Todo() {
       )
     )
   }
+
+    //   function removeTodoItem() {
+  //   setAddListItems(prevAddListItems =>
+  //     prevAddListItems.map(item => ({
+  //       ...item,
+  //       completed: !item.completed
+  //     }))
+  //   )
+  // }
+
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -70,15 +81,15 @@ export default function Todo() {
               </div>
             </div>
 
-            {addListItems.map(item => (
-              <div key={item.id} className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
+            {addListItems.map((item, index) => (
+              <div key={`${index}-${item.id}`} className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
                 <div className="todo-flex-col">
                   <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
                     type="checkbox"
-                    id={`listItem-${item.id}`}
-                    name={`listItem-${item.id}`}
+                    id={item.id}
+                    name={item.id}
                   />
-                  <label className="cursor-pointer" htmlFor={`listItem-${item.id}`}>{item.listItem}</label>
+                  <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
                   <PencilIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
