@@ -60,19 +60,11 @@ export default function Todo() {
         </label>
         <div className="w-full h-full max-w-full bg-white rounded-[5px] shadow-paleWhite">
           <div className="h-[85%] overflow-y-auto min-h-[auto]">
-            <div className="p-6 border-t first:border-0 flex justify-between items-center group/controls">
-              <div className="todo-flex-col">
-                <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]" type="checkbox" id="listItems1" name="listItems1"/>
-                <label className="cursor-pointer" htmlFor="listItems1">Jog around the park 3x</label>
-              </div>
-              <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
-                <PencilIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
-                <CrossIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
-              </div>
-            </div>
-
-            {addListItems.map(item => (
-              <div key={item.id} className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
+            {addListItems.map((item, index) => (
+              <div key={item.id}
+                className={`p-6 ${index === 0 ? "border-t first:border-0" : "border-t border-t-lightGrey"}
+                flex justify-between items-center group/controls`}
+              >
                 <div className="todo-flex-col">
                   <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
                     type="checkbox"
