@@ -31,22 +31,12 @@ export default function Todo() {
   }
 
   function removeTodoItem() {
-    setAddListItems(prevAddListItems => 
-      prevAddListItems.map(item =>
-        item.id !== addListItems.id
+    setAddListItems(prevAddListItems =>
+      prevAddListItems.filter(item =>
+        item.id !== addListItems[0].id
       )
     )
   }
-
-    //   function removeTodoItem() {
-  //   setAddListItems(prevAddListItems =>
-  //     prevAddListItems.map(item => ({
-  //       ...item,
-  //       completed: !item.completed
-  //     }))
-  //   )
-  // }
-
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -81,8 +71,8 @@ export default function Todo() {
               </div>
             </div>
 
-            {addListItems.map((item, index) => (
-              <div key={`${index}-${item.id}`} className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
+            {addListItems.map(item => (
+              <div key={item.id} className="p-6 border-t border-t-lightGrey flex justify-between items-center group/controls">
                 <div className="todo-flex-col">
                   <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
                     type="checkbox"
