@@ -38,6 +38,10 @@ export default function Todo() {
     )
   }
 
+  function updateTodoItem(index: number, updateItem: string) {
+
+  }
+
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     addTodoItem();
@@ -74,7 +78,10 @@ export default function Todo() {
                   <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
-                  <PencilIcon fillColor="#494C6B" hoverState="hover:fill-midGrey cursor-pointer mr-2"/>
+                  <PencilIcon
+                    fillColor="#494C6B"
+                    toggleOnClick={updateTodoItem(index, item.listItem)}
+                    hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                   <CrossIcon
                     fillColor="#494C6B"
                     toggleOnClick={removeTodoItem}
