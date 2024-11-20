@@ -2,7 +2,7 @@ interface iconProps {
   fillColor: string;
   stroke?: string;
   hoverState: string;
-  toggleOnClick: (event: React.MouseEvent<SVGSVGElement>) => void;
+  toggleOnClick: (event: React.MouseEvent<SVGSVGElement>) => void
 }
 
 export default function iconMoon({

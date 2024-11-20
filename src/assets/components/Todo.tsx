@@ -38,7 +38,8 @@ export default function Todo() {
     )
   }
 
-  function updateTodoItem(index: number, updateItem: string) {
+  function updateTodoItem(itemId: string, updatedItem: string) {
+
 
   }
 
@@ -80,7 +81,7 @@ export default function Todo() {
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
                   <PencilIcon
                     fillColor="#494C6B"
-                    toggleOnClick={updateTodoItem(index, item.listItem)}
+                    toggleOnClick={() => updateTodoItem(item.id, item.listItem)}
                     hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                   <CrossIcon
                     fillColor="#494C6B"
