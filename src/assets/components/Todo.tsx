@@ -39,8 +39,12 @@ export default function Todo() {
   }
 
   function updateTodoItem(itemId: string, updatedItem: string) {
-
-
+    setAddListItems(prevAddListItems =>
+      prevAddListItems.map(item =>
+        item.id === itemId ? { ...item, listItem: updatedItem } : item
+      )
+    )
+    console.log(addListItems)
   }
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
