@@ -9,6 +9,7 @@ type TodoListItem = {
   id: string,
   listItem: string,
   completed: boolean,
+  reveal: boolean
 }
 
 export default function Todo() {
@@ -25,15 +26,17 @@ export default function Todo() {
       {
         id: nanoid(),
         listItem: todoLisItem,
-        completed: false
+        completed: false,
+        reveal: false
       }
     ])
+    setTodoListItem("")
   }
 
-  function removeTodoItem() {
+  function removeTodoItem(index: number) {
     setAddListItems(prevAddListItems =>
       prevAddListItems.filter(item =>
-        item.id !== addListItems[0].id
+        item.id !== addListItems[index].id
       )
     )
   }
@@ -44,7 +47,6 @@ export default function Todo() {
         item.id === itemId ? { ...item, listItem: updatedItem } : item
       )
     )
-    console.log(addListItems)
   }
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
@@ -89,7 +91,7 @@ export default function Todo() {
                     hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                   <CrossIcon
                     fillColor="#494C6B"
-                    toggleOnClick={removeTodoItem}
+                    toggleOnClick={() => removeTodoItem(index)}
                     hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                 </div>
               </div>
