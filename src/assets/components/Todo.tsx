@@ -41,10 +41,10 @@ export default function Todo() {
     )
   }
 
-  function updateTodoItem(itemId: string, updatedItem: string) {
+  function updateTodoItem(itemId: string) {
     setAddListItems(prevAddListItems =>
       prevAddListItems.map(item =>
-        item.id === itemId ? { ...item, listItem: updatedItem } : item
+        item.id === itemId ? { ...item, reveal: !item.reveal } : item
       )
     )
   }
@@ -82,12 +82,13 @@ export default function Todo() {
                     id={item.id}
                     name={item.id}
                   />
-                  <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>
+                  {item.reveal ? <input className="p-[6px]" type="text" placeholder="edit item" /> :
+                     <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>}
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
                   <PencilIcon
                     fillColor="#494C6B"
-                    toggleOnClick={() => updateTodoItem(item.id, item.listItem)}
+                    toggleOnClick={() => updateTodoItem(item.id)}
                     hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                   <CrossIcon
                     fillColor="#494C6B"
