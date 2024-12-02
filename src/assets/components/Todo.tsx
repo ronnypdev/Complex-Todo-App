@@ -41,7 +41,7 @@ export default function Todo() {
     )
   }
 
-  function updateTodoItem(itemId: string) {
+  function editTodoItem(itemId: string) {
     setAddListItems(prevAddListItems =>
       prevAddListItems.map(item =>
         item.id === itemId ? { ...item, reveal: !item.reveal } : item
@@ -88,7 +88,7 @@ export default function Todo() {
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
                   <PencilIcon
                     fillColor="#494C6B"
-                    toggleOnClick={() => updateTodoItem(item.id)}
+                    toggleOnClick={() => editTodoItem(item.id)}
                     hoverState="hover:fill-midGrey cursor-pointer mr-2" />
                   <CrossIcon
                     fillColor="#494C6B"
@@ -99,9 +99,8 @@ export default function Todo() {
             ))}
           </div>
 
-
           <div className="controls border-t border-t-lightGrey h-[15%] flex justify-between items-center px-[14px]">
-            <p className="text-shadeGrey"><span>5</span> items left</p>
+            <p className="text-shadeGrey"><span>{addListItems.length}</span> items left</p>
             <div className="flex justify-between items-center">
               <p className="ml-4 text-primaryBlue cursor-pointer">All</p>
               <p className="ml-4 text-shadeGrey cursor-pointer">Active</p>
