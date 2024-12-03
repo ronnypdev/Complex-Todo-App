@@ -82,7 +82,14 @@ export default function Todo() {
                     id={item.id}
                     name={item.id}
                   />
-                  {item.reveal ? <input className="p-[6px]" type="text" placeholder="edit item" /> :
+                  {item.reveal ? <input className="p-[6px]"
+                    type="text"
+                    value={item.listItem}
+                    id={item.id}
+                    name={item.id}
+                    placeholder="edit item"
+                    onChange={handleTodoItemChange}
+                  /> :
                      <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>}
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
