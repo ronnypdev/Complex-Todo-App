@@ -49,6 +49,15 @@ export default function Todo() {
     )
   }
 
+  function updateTodoItem(itemIndex: number, event: React.ChangeEvent<HTMLInputElement>) {
+    const {value} = event.target
+    setAddListItems(prevAddListItems =>
+      prevAddListItems.map(item =>
+        item.id === addListItems[itemIndex].id ? {...item, listItem: value} : item
+      )
+    )
+  }
+
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     addTodoItem();
@@ -88,7 +97,7 @@ export default function Todo() {
                     id={item.id}
                     name={item.id}
                     placeholder="edit item"
-                    onChange={handleTodoItemChange}
+                    onChange={(e) => updateTodoItem(index, e)}
                   /> :
                      <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>}
                 </div>
