@@ -5,6 +5,8 @@ import PencilIcon from "./icons/PencilIcon";
 import CrossIcon from "./icons/CrossIcon";
 import OvalIcon from "./icons/OvalIcon";
 
+import UpdatedItem from "./UpdatedItem";
+
 type TodoListItem = {
   id: string,
   listItem: string,
@@ -50,7 +52,7 @@ export default function Todo() {
   }
 
   function updateTodoItem(itemIndex: number, event: React.ChangeEvent<HTMLInputElement>) {
-    const {value} = event.target
+    const { value } = event.target;
     setAddListItems(prevAddListItems =>
       prevAddListItems.map(item =>
         item.id === addListItems[itemIndex].id ? {...item, listItem: value} : item
@@ -91,15 +93,14 @@ export default function Todo() {
                     id={item.id}
                     name={item.id}
                   />
-                  {item.reveal ? <input className="p-[6px]"
-                    type="text"
-                    value={item.listItem}
-                    id={item.id}
-                    name={item.id}
-                    placeholder="edit item"
-                    onChange={(e) => updateTodoItem(index, e)}
-                  /> :
-                     <label className="cursor-pointer" htmlFor={item.id}>{item.listItem}</label>}
+                  <UpdatedItem
+                    itemReveal={item.reveal}
+                    itemIndexValue={index}
+                    itemValue={item.listItem}
+                    itemId={item.id}
+                    itemName={item.id}
+                    updateItemData={updateTodoItem}
+                  />
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
                   <PencilIcon
