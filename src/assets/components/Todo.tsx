@@ -69,10 +69,21 @@ export default function Todo() {
     console.log("activeItems: ", activeItems)
   }
 
+  function checkCompleteItem() {
+      setAddListItems((prevAddListItems) =>
+        prevAddListItems.map((item) => ({
+          ...item,
+          completed: !item.completed,
+        }))
+      );
+  }
+
   function toggleActive(index: number) {
     setIsActiveIndex(index)
+    checkCompleteItem()
     filterItems(addListItems)
   }
+
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -106,6 +117,7 @@ export default function Todo() {
                     type="checkbox"
                     id={item.id}
                     name={item.id}
+                    onChange={checkCompleteItem}
                   />
                   <UpdatedItem
                     itemReveal={item.reveal}
