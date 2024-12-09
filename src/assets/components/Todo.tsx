@@ -63,8 +63,15 @@ export default function Todo() {
     )
   }
 
+  function filterItems(TodoListItem: TodoListItem[]) {
+    const activeItems = TodoListItem.filter((item) => item.completed === false )
+    setAddListItems(activeItems)
+    console.log("activeItems: ", activeItems)
+  }
+
   function toggleActive(index: number) {
     setIsActiveIndex(index)
+    filterItems(addListItems)
   }
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
