@@ -146,16 +146,23 @@ export default function Todo() {
 
           <div className="controls border-t border-t-lightGrey h-[15%] flex justify-between items-center px-[14px]">
             <p className="text-shadeGrey"><span>{addListItems.length}</span> items left</p>
-            <ul className="flex justify-between items-center">
-              {addListItems.length > 0 &&
-                addListItems[0].filterNames.map((filterItem, index) => (
-                <li
-                  key={index}
-                  className={`ml-4 cursor-pointer ${index === isActiveIndex ? "text-primaryBlue" : 'text-shadeGrey'}`}
-                  onClick={() => toggleActive(index)}
-                >{filterItem}</li>
-              ))}
-            </ul>
+              <ul className="flex justify-between items-center">
+                {addListItems.length > 0 && addListItems[0].filterNames ? (
+                  addListItems[0].filterNames.map((filterItem, index) => (
+                    <li
+                      key={index}
+                      className={`ml-4 cursor-pointer ${index === isActiveIndex ? "text-primaryBlue" : "text-shadeGrey"}`}
+                      onClick={() => toggleActive(index)}
+                    >{filterItem}</li>
+                  ))
+              ) : (
+                  <>
+                    <li className="ml-4 cursor-pointer text-shadeGrey">All</li>
+                    <li className="ml-4 cursor-pointer text-shadeGrey">Active</li>
+                    <li className="ml-4 cursor-pointer text-shadeGrey">Completed</li>
+                  </>
+                )}
+              </ul>
             <p className="text-shadeGrey cursor-pointer">Clear Completed</p>
           </div>
         </div>
