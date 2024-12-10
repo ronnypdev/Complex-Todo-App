@@ -8,10 +8,11 @@ import OvalIcon from "./icons/OvalIcon";
 import UpdatedItem from "./UpdatedItem";
 
 type TodoListItem = {
-  id: string,
-  listItem: string,
-  completed: boolean,
-  reveal: boolean
+  id: string;
+  listItem: string;
+  completed: boolean;
+  reveal: boolean;
+  filterNames: string[];
 }
 
 export default function Todo() {
@@ -19,7 +20,7 @@ export default function Todo() {
   const [addListItems, setAddListItems] = useState<TodoListItem[]>([]);
   const [isActiveIndex, setIsActiveIndex] = useState<null | number >(null);
 
-  const filterList = ["All", "Active", "Completed"];
+  // const filterList = ["All", "Active", "Completed"];
 
   function handleTodoItemChange(event: React.ChangeEvent<HTMLInputElement>) {
     setTodoListItem(event.target.value);
@@ -32,7 +33,8 @@ export default function Todo() {
         id: nanoid(),
         listItem: todoLisItem,
         completed: false,
-        reveal: false
+        reveal: false,
+        filterNames: ["All", "Active", "Completed"],
       }
     ])
     setTodoListItem("")
@@ -145,13 +147,13 @@ export default function Todo() {
           <div className="controls border-t border-t-lightGrey h-[15%] flex justify-between items-center px-[14px]">
             <p className="text-shadeGrey"><span>{addListItems.length}</span> items left</p>
             <ul className="flex justify-between items-center">
-              {filterList.map((filterItem, index) => (
+              {addListItems.length > 0 &&
+                addListItems[0].filterNames.map((filterItem, index) => (
                 <li
                   key={index}
                   className={`ml-4 cursor-pointer ${index === isActiveIndex ? "text-primaryBlue" : 'text-shadeGrey'}`}
                   onClick={() => toggleActive(index)}
                 >{filterItem}</li>
-
               ))}
             </ul>
             <p className="text-shadeGrey cursor-pointer">Clear Completed</p>
