@@ -66,8 +66,8 @@ export default function Todo() {
   }
 
   function filterItems(TodoListItem: TodoListItem[]) {
-    const activeItems = TodoListItem.filter((item) => item.completed === false )
-    setAddListItems(activeItems)
+    const activeItems = TodoListItem.every((item) => item.completed === false )
+    // setAddListItems(activeItems)
     console.log("activeItems: ", activeItems)
   }
 
