@@ -37,7 +37,7 @@ export default function Todo() {
         filterNames: ["All", "Active", "Completed"],
       }
     ])
-    setTodoListItem("")
+    setTodoListItem("");
   }
 
   function removeTodoItem(index: number) {
@@ -45,7 +45,7 @@ export default function Todo() {
       prevAddListItems.filter(item =>
         item.id !== addListItems[index].id
       )
-    )
+    );
   }
 
   function editTodoItem(itemId: string) {
@@ -53,7 +53,7 @@ export default function Todo() {
       prevAddListItems.map(item =>
         item.id === itemId ? { ...item, reveal: !item.reveal } : item
       )
-    )
+    );
   }
 
   function updateTodoItem(itemIndex: number, event: React.ChangeEvent<HTMLInputElement>) {
@@ -82,7 +82,6 @@ export default function Todo() {
 
   function toggleActive(index: number) {
     setIsActiveIndex(index);
-    // checkCompleteItem()
   }
 
 
@@ -119,7 +118,7 @@ export default function Todo() {
                     id={item.id}
                     checked={item.completed}
                     name={item.id}
-                    onChange={(event) => checkCompleteItem(event, item.id)}
+                    onChange={(event) => checkCompleteItem(item.id, event)}
                   />
                   <UpdatedItem
                     itemReveal={item.reveal}
@@ -131,10 +130,10 @@ export default function Todo() {
                   />
                 </div>
                 <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
-                  <PencilIcon
+                  {!item.completed && <PencilIcon
                     fillColor="#494C6B"
                     toggleOnClick={() => editTodoItem(item.id)}
-                    hoverState="hover:fill-midGrey cursor-pointer mr-2" />
+                    hoverState="hover:fill-midGrey cursor-pointer mr-2" />}
                   <CrossIcon
                     fillColor="#494C6B"
                     toggleOnClick={() => removeTodoItem(index)}
@@ -155,7 +154,7 @@ export default function Todo() {
                       onClick={() => toggleActive(index)}
                     >{filterItem}</li>
                   ))
-              ) : (
+                ) : (
                   <>
                     <li className="ml-4 cursor-pointer text-shadeGrey">All</li>
                     <li className="ml-4 cursor-pointer text-shadeGrey">Active</li>
