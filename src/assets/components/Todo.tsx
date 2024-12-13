@@ -65,25 +65,24 @@ export default function Todo() {
     )
   }
 
-  function filterItems(TodoListItem: TodoListItem[]) {
-    const activeItems = TodoListItem.every((item) => item.completed === false )
-    // setAddListItems(activeItems)
-    console.log("activeItems: ", activeItems)
-  }
+  // function filterItems(TodoListItem: TodoListItem[]) {
+  //   const activeItems = TodoListItem.every((item) => item.completed === false);
+  //   setAddListItems(activeItems)
+  //   console.log("activeItems: ", activeItems);
+  // }
 
-  function checkCompleteItem() {
-      setAddListItems((prevAddListItems) =>
-        prevAddListItems.map((item) => ({
-          ...item,
-          completed: !item.completed,
-        }))
-      );
+  function checkCompleteItem(itemId: string, event: React.ChangeEvent<HTMLInputElement>) {
+    const isChecked = event.target.checked;
+    setAddListItems((prevAddListItems) =>
+      prevAddListItems.map(item =>
+        item.id === itemId ? {...item, completed: isChecked} : item
+      )
+    );
   }
 
   function toggleActive(index: number) {
-    setIsActiveIndex(index)
-    checkCompleteItem()
-    filterItems(addListItems)
+    setIsActiveIndex(index);
+    // checkCompleteItem()
   }
 
 
@@ -118,8 +117,9 @@ export default function Todo() {
                   <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
                     type="checkbox"
                     id={item.id}
+                    checked={item.completed}
                     name={item.id}
-                    onChange={checkCompleteItem}
+                    onChange={(event) => checkCompleteItem(event, item.id)}
                   />
                   <UpdatedItem
                     itemReveal={item.reveal}
