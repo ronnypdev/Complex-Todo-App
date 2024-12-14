@@ -10,9 +10,9 @@ function App() {
         <div className="max-container relative bottom-32">
           <Todo />
         </div>
-        <div className="text-center">
+        {/* <div className="text-center">
           <p className="text-sm leading-normal font-normal not-italic -tracking[0.194px] text-shadeGrey">Drag and drop to reorder list</p>
-        </div>
+        </div> */}
       </main>
     </>
   )

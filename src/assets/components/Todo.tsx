@@ -65,12 +65,6 @@ export default function Todo() {
     )
   }
 
-  // function filterItems(TodoListItem: TodoListItem[]) {
-  //   const activeItems = TodoListItem.every((item) => item.completed === false);
-  //   setAddListItems(activeItems)
-  //   console.log("activeItems: ", activeItems);
-  // }
-
   function checkCompleteItem(itemId: string, event: React.ChangeEvent<HTMLInputElement>) {
     const isChecked = event.target.checked;
     setAddListItems((prevAddListItems) =>
@@ -80,10 +74,16 @@ export default function Todo() {
     );
   }
 
-  function toggleActive(index: number) {
-    setIsActiveIndex(index);
+  function filterItems(TodoListItem: TodoListItem[]) {
+    const activeItems = TodoListItem.filter((item) => !item.completed);
+    setAddListItems(activeItems);
+    console.log("activeItems: ", activeItems);
   }
 
+  function toggleActive(index: number) {
+    setIsActiveIndex(index);
+    filterItems(addListItems);
+  }
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
