@@ -18,9 +18,8 @@ type TodoListItem = {
 export default function Todo() {
   const [todoLisItem, setTodoListItem] = useState<string>("");
   const [addListItems, setAddListItems] = useState<TodoListItem[]>([]);
-  const [isActiveIndex, setIsActiveIndex] = useState<null | number >(null);
-
-  // const filterList = ["All", "Active", "Completed"];
+  const [isActiveIndex, setIsActiveIndex] = useState<null | number>(null);
+  const [filter, setFilter] = useState<string>("All");
 
   function handleTodoItemChange(event: React.ChangeEvent<HTMLInputElement>) {
     setTodoListItem(event.target.value);
@@ -74,15 +73,9 @@ export default function Todo() {
     );
   }
 
-  function filterItems(TodoListItem: TodoListItem[]) {
-    const activeItems = TodoListItem.filter((item) => !item.completed);
-    setAddListItems(activeItems);
-    console.log("activeItems: ", activeItems);
-  }
-
-  function toggleActive(index: number) {
+  function toggleActive(index: number, filterOption: string) {
     setIsActiveIndex(index);
-    filterItems(addListItems);
+    setFilter(filterOption);
   }
 
   function submitTodoData(event: React.FormEvent<HTMLFormElement>) {
@@ -108,38 +101,110 @@ export default function Todo() {
         <div className="w-full h-full max-w-full bg-white rounded-[5px] shadow-paleWhite">
           <div className="h-[85%] overflow-y-auto min-h-[auto]">
             {addListItems.map((item, index) => (
-              <div key={item.id}
-                className={`p-6 ${index === 0 ? "border-t first:border-0" : "border-t border-t-lightGrey"}
-                flex justify-between items-center group/controls`}
-              >
-                <div className="todo-flex-col">
-                  <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
-                    type="checkbox"
-                    id={item.id}
-                    checked={item.completed}
-                    name={item.id}
-                    onChange={(event) => checkCompleteItem(item.id, event)}
-                  />
-                  <UpdatedItem
-                    itemReveal={item.reveal}
-                    itemIndexValue={index}
-                    itemValue={item.listItem}
-                    itemId={item.id}
-                    itemName={item.id}
-                    updateItemData={updateTodoItem}
-                  />
-                </div>
-                <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
-                  {!item.completed && <PencilIcon
-                    fillColor="#494C6B"
-                    toggleOnClick={() => editTodoItem(item.id)}
-                    hoverState="hover:fill-midGrey cursor-pointer mr-2" />}
-                  <CrossIcon
-                    fillColor="#494C6B"
-                    toggleOnClick={() => removeTodoItem(index)}
-                    hoverState="hover:fill-midGrey cursor-pointer mr-2" />
-                </div>
-              </div>
+              <>
+                {filter === "All" && (
+                  <div key={item.id}
+                    className={`p-6 ${index === 0 ? "border-t first:border-0" : "border-t border-t-lightGrey"}
+                    flex justify-between items-center group/controls`}
+                  >
+                    <div className="todo-flex-col">
+                      <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
+                        type="checkbox"
+                        id={item.id}
+                        checked={item.completed}
+                        name={item.id}
+                        onChange={(event) => checkCompleteItem(item.id, event)}
+                      />
+                      <UpdatedItem
+                        itemReveal={item.reveal}
+                        itemIndexValue={index}
+                        itemValue={item.listItem}
+                        itemId={item.id}
+                        itemName={item.id}
+                        updateItemData={updateTodoItem}
+                      />
+                    </div>
+                    <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
+                      {!item.completed && <PencilIcon
+                        fillColor="#494C6B"
+                        toggleOnClick={() => editTodoItem(item.id)}
+                        hoverState="hover:fill-midGrey cursor-pointer mr-2" />}
+                      <CrossIcon
+                        fillColor="#494C6B"
+                        toggleOnClick={() => removeTodoItem(index)}
+                        hoverState="hover:fill-midGrey cursor-pointer mr-2" />
+                    </div>
+                  </div>)
+                }
+                {filter === "Active" && !item.completed && (
+                  <div key={item.id}
+                    className={`p-6 ${index === 0 ? "border-t first:border-0" : "border-t border-t-lightGrey"}
+                    flex justify-between items-center group/controls`}
+                  >
+                    <div className="todo-flex-col">
+                      <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
+                        type="checkbox"
+                        id={item.id}
+                        checked={item.completed}
+                        name={item.id}
+                        onChange={(event) => checkCompleteItem(item.id, event)}
+                      />
+                      <UpdatedItem
+                        itemReveal={item.reveal}
+                        itemIndexValue={index}
+                        itemValue={item.listItem}
+                        itemId={item.id}
+                        itemName={item.id}
+                        updateItemData={updateTodoItem}
+                      />
+                    </div>
+                    <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
+                      {!item.completed && <PencilIcon
+                        fillColor="#494C6B"
+                        toggleOnClick={() => editTodoItem(item.id)}
+                        hoverState="hover:fill-midGrey cursor-pointer mr-2" />}
+                      <CrossIcon
+                        fillColor="#494C6B"
+                        toggleOnClick={() => removeTodoItem(index)}
+                        hoverState="hover:fill-midGrey cursor-pointer mr-2" />
+                    </div>
+                  </div>)
+                }
+                {filter === "Completed" && item.completed && (
+                  <div key={item.id}
+                    className={`p-6 ${index === 0 ? "border-t first:border-0" : "border-t border-t-lightGrey"}
+                    flex justify-between items-center group/controls`}
+                  >
+                    <div className="todo-flex-col">
+                      <input className="cursor-pointer checkbox-round relative right-[11px] bottom-[2px]"
+                        type="checkbox"
+                        id={item.id}
+                        checked={item.completed}
+                        name={item.id}
+                        onChange={(event) => checkCompleteItem(item.id, event)}
+                      />
+                      <UpdatedItem
+                        itemReveal={item.reveal}
+                        itemIndexValue={index}
+                        itemValue={item.listItem}
+                        itemId={item.id}
+                        itemName={item.id}
+                        updateItemData={updateTodoItem}
+                      />
+                    </div>
+                    <div className="hidden group-hover/controls:flex group-hover/controls:justify-center group-hover/controls:items-center">
+                      {!item.completed && <PencilIcon
+                        fillColor="#494C6B"
+                        toggleOnClick={() => editTodoItem(item.id)}
+                        hoverState="hover:fill-midGrey cursor-pointer mr-2" />}
+                      <CrossIcon
+                        fillColor="#494C6B"
+                        toggleOnClick={() => removeTodoItem(index)}
+                        hoverState="hover:fill-midGrey cursor-pointer mr-2" />
+                    </div>
+                  </div>)
+                }
+              </>
             ))}
           </div>
 
@@ -151,12 +216,12 @@ export default function Todo() {
                     <li
                       key={index}
                       className={`ml-4 cursor-pointer ${index === isActiveIndex ? "text-primaryBlue" : "text-shadeGrey"}`}
-                      onClick={() => toggleActive(index)}
+                      onClick={() => toggleActive(index, filterItem)}
                     >{filterItem}</li>
                   ))
                 ) : (
                   <>
-                    <li className="ml-4 cursor-pointer text-shadeGrey">All</li>
+                    <li className="ml-4 cursor-pointer text-primaryBlue">All</li>
                     <li className="ml-4 cursor-pointer text-shadeGrey">Active</li>
                     <li className="ml-4 cursor-pointer text-shadeGrey">Completed</li>
                   </>
