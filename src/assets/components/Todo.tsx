@@ -20,7 +20,7 @@ export default function Todo() {
   const [addListItems, setAddListItems] = useState<TodoListItem[]>([]);
   const [isActiveIndex, setIsActiveIndex] = useState<null | number>(null);
   const [filter, setFilter] = useState<string>("All");
-  const [itemChecked, setItemChecked] = useState(true);
+  const [itemChecked, setItemChecked] = useState<boolean>(true);
 
   function handleTodoItemChange(event: React.ChangeEvent<HTMLInputElement>) {
     setTodoListItem(event.target.value);
